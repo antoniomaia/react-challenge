@@ -37,8 +37,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Search searchValue={searchValue} onChange={this.onChange} />
-        <SelectedList searchValue={searchValue} list={this.list} />
+        <Search searchValue={searchValue} onChange={this.onChange} className="Search" />
+        <SelectedList searchValue={searchValue} list={this.list} className="SelectedList" />
       </div>
     );
   }

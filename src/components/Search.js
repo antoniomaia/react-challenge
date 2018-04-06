@@ -5,7 +5,9 @@ import './Search.css';
 
 function Search({ searchValue, onChange }) {
   return (
-    <input value={searchValue} onChange={onChange} />
+    <div className="inputHeader">
+      <input value={searchValue} onChange={onChange} />
+    </div>
   );
 }
 
