@@ -1,14 +1,16 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 
-import './Search.css'
+import './Search.css';
 
-function Search() {
-  return null
+function Search({ searchValue, onChange }) {
+  return (
+    <input value={searchValue} onChange={onChange} />
+  );
 }
 
 Search.propTypes = {
-   searchValue: PropTypes.string.isRequired,
-   onChange: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
-export default Search
+export default Search;
