@@ -18,5 +18,5 @@ it('should not render text when a children is not given', () => {
   const wrapper = shallow(<Text></Text>)
 
   const wrapperChildren = wrapper.children()
-  expect(wrapperChildren.length).toBe(0)
+  expect(wrapperChildren.children().length).toBe(0)
 })
