@@ -35,7 +35,7 @@ class App extends Component {
     if (!reposList && reposList.length === 0) return <p>Loading...</p>;
     return (
       <div className="App">
-        <Search searchValue={searchValue} onChange={this.onChange} className="Search" />
+        <Search searchValue={searchValue} onChange={this.onChange} />
         <SelectedList searchValue={searchValue} list={reposList} />
       </div>
     );
