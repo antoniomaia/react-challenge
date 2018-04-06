@@ -1,44 +1,40 @@
 import React, { Component } from 'react';
 
-import {
-  Search,
-  SelectedList
-}
-from './components'
+import { Search, SelectedList } from './components';
 
 import './App.css';
 
 class App extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      searchValue: ''
+      searchValue: '',
+      reposList: []
     }
+  }
+
+  componentDidMount() {
+    fetch('https://api.github.com/users/antoniomaia/repos')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ reposList: data })
+      })
+      .catch(error => console.warn('Error fetching repos'));
   }
 
   /* auto biding */
   onChange = (e) => {
-    const searchValue = e.target.value
-    this.setState({ searchValue })
-  }
-
-  get list(){
-    return [
-      {id: 0, text: 'react'},
-      {id: 1, text: 'css'},
-      {id: 2, text: 'html'},
-      {id: 3, text: 'fetch'},
-    ]
+    const searchValue = e.target.value;
+    this.setState({ searchValue });
   }
 
   render() {
-    const { searchValue } = this.state
-
+    const { searchValue, reposList } = this.state;
+    if (!reposList && reposList.length === 0) return <p>Loading...</p>;
     return (
       <div className="App">
         <Search searchValue={searchValue} onChange={this.onChange} className="Search" />
-        <SelectedList searchValue={searchValue} list={this.list} className="SelectedList" />
+        <SelectedList searchValue={searchValue} list={reposList} className="SelectedList" />
       </div>
     );
   }

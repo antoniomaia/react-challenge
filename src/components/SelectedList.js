@@ -4,14 +4,14 @@ import Text from './Text';
 
 import './SelectedList.css';
 
-function renderText({ id, text }) {
+function renderText({ id, name }) {
   return (
-    <Text key={id} children={text} />
+    <Text key={id} children={name} />
   );
 }
 
 function filterText(searchValue) {
-  return ({ text }) => text.includes(searchValue);
+  return ({ name }) => name.toLowerCase().includes(searchValue.toLowerCase());
 }
 
 function SelectedList({ searchValue, list }) {
@@ -28,7 +28,7 @@ SelectedList.propTypes = {
   searchValue: PropTypes.string.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   })).isRequired,
 }
 
