@@ -17,7 +17,9 @@ class App extends Component {
     fetch('https://api.github.com/users/antoniomaia/repos')
       .then(response => response.json())
       .then(data => {
-        this.setState({ reposList: data })
+        /* Fetch relevant exercise data from response */
+        const fetchData = data.map((repo) => { return { id: repo.id, text: repo.name } });
+        this.setState({ reposList: fetchData })
       })
       .catch(error => console.warn('Error fetching repos'));
   }
@@ -34,7 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         <Search searchValue={searchValue} onChange={this.onChange} className="Search" />
-        <SelectedList searchValue={searchValue} list={reposList} className="SelectedList" />
+        <SelectedList searchValue={searchValue} list={reposList} />
       </div>
     );
   }
