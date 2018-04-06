@@ -1,13 +1,17 @@
-import React, { PropTypes } from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Text from './Text';
 
-import './SelectedList.css'
+import './SelectedList.css';
 
-function renderText({id, text}) {
-  return null;
+function renderText({ id, text }) {
+  return (
+    <Text key={id} children={text} />
+  );
 }
 
 function filterText(searchValue) {
-    return ({text}) => true
+  return ({ text }) => text.includes(searchValue);
 }
 
 function SelectedList({ searchValue, list }) {
@@ -17,15 +21,15 @@ function SelectedList({ searchValue, list }) {
         .filter(filterText(searchValue))
         .map(renderText)}
     </ul>
-  )
+  );
 }
 
 SelectedList.propTypes = {
-   searchValue: PropTypes.string.isRequired,
-   list: PropTypes.arrayOf(PropTypes.shape({
-     id: PropTypes.number.isRequired,
-     text: PropTypes.string.isRequired,
-   })).isRequired,
+  searchValue: PropTypes.string.isRequired,
+  list: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+  })).isRequired,
 }
 
-export default SelectedList
+export default SelectedList;
